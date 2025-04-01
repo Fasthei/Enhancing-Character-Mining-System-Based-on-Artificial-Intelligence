@@ -13,7 +13,7 @@
 - **Azure AI Search**：建立搜索索引，提供全文搜索和过滤功能。
 - **Azure Blob Storage**：存储上传的文件。
 - **FastAPI后端**：提供RESTful API接口。
-- **AutoGen框架**：构建多智能体对话系统，包括关系分析师、实体专家、图表可视化师和总结专家。
+- **AutoGen框架v0.4**：使用Microsoft最新版本的autogen-core、autogen-agentchat和autogen-ext构建多智能体对话系统，包括关系分析师、实体专家、图表可视化师和总结专家。
 
 ### 前端界面
 
@@ -46,6 +46,12 @@
    - 使用不同颜色标识关系类型
    - 可调整、缩放和交互
 
+6. **增强版AutoGen功能**：
+   - 流式处理对话输出：实时观察AI思考过程
+   - 支持取消长时间运行的对话
+   - 智能上下文管理：自动处理长对话
+   - 对话状态保存与恢复
+
 ## 安装部署
 
 ### Azure服务配置
@@ -77,7 +83,8 @@ cp .env.example .env
 
 3. 启动服务：
 ```bash
-python -m uvicorn main:app --host 0.0.0.0 --port 8000
+# 使用模块方式运行
+python -m backend.main
 ```
 
 ### 前端部署
@@ -121,13 +128,17 @@ npm run build
 4. **智能对话**：
    - 输入问题进行人物关系分析
    - 多智能体团队会分析并发现潜在关系
+   - 实时观察AI思考过程（流式输出）
+   - 可随时取消耗时长的分析
    - 自动更新关系图和提供总结
 
 ## 技术详情
 
 - 使用FastAPI构建异步API
 - 使用Azure AI Search技能组处理文档
-- 使用AutoGen框架构建多智能体系统
+- 使用AutoGen v0.4框架构建多智能体系统
+- 利用CancellationToken实现对话取消
+- 使用BufferedChatCompletionContext管理长上下文
 - 使用React Force Graph实现动态关系图
 
 ## Azure配置详情
