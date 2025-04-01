@@ -65,4 +65,5 @@ async def health_check():
 
 # 主入口
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True) 
+    # 使用相对导入路径时需要使用Python模块方式运行
+    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True) 
